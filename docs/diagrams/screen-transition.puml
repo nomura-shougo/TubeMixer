@@ -1,0 +1,92 @@
+@startuml screen-transition
+!theme plain
+skinparam backgroundColor #FFFFFF
+skinparam defaultFontName "Yu Gothic"
+skinparam state {
+  BackgroundColor #F0F4FF
+  BorderColor #4A6FA5
+  FontSize 14
+  FontName "Yu Gothic"
+  ArrowColor #4A6FA5
+}
+skinparam note {
+  BackgroundColor #FFF8E1
+  BorderColor #D6B656
+  FontName "Yu Gothic"
+}
+skinparam ArrowFontName "Yu Gothic"
+
+title TubeMixer 画面遷移図
+
+[*] --> Login
+
+state "ログイン画面\n/login" as Login {
+  state "Googleログインボタン" as LoginBtn
+}
+
+state "ダッシュボード\n/（メイン画面）" as Dashboard {
+  state "グループ選択" as GroupSelect : チャンネルグループを選択
+  state "日付範囲指定" as DateRange : 開始日・終了日を設定\n（デフォルト: 過去7日間）
+  state "フィルタ実行中" as Filtering : プログレスバー表示\n（完了チャンネル数/全チャンネル数）
+  state "フィルタ結果" as Results : 動画一覧（チェックボックス付き）\n投稿日の新しい順で表示
+  state "URL生成完了" as UrlGen : watch_videos URL表示\nコピー / YouTubeアプリで開く
+
+  GroupSelect --> DateRange : グループ選択
+  DateRange --> Filtering : フィルタ実行
+  Filtering --> Results : 全チャンネル完了
+  Results --> UrlGen : URL生成
+  Results --> GroupSelect : リセット
+  UrlGen --> GroupSelect : 新規検索
+}
+
+state "グループ管理画面\n/groups" as Groups {
+  state "グループ一覧" as GroupList : グループ名・チャンネル数\n編集・削除ボタン
+  state "新規作成ダイアログ" as CreateDialog : グループ名を入力
+  state "削除確認ダイアログ" as DeleteConfirm : 確認メッセージ表示
+
+  GroupList --> CreateDialog : 新規作成
+  CreateDialog --> GroupList : 作成完了
+  GroupList --> DeleteConfirm : 削除
+  DeleteConfirm --> GroupList : 確認済み
+}
+
+state "グループ編集画面\n/groups/[id]" as GroupEdit {
+  state "グループ名編集" as EditName
+  state "割り当て済みチャンネル" as Assigned : チャンネルごとに削除ボタン
+  state "チャンネル検索・追加" as Search : インクリメンタルサーチ\nチャンネルごとに追加ボタン
+
+  EditName -[hidden]-> Assigned
+  Assigned -[hidden]-> Search
+}
+
+' === 画面間遷移 ===
+Login --> Dashboard : Google OAuth\n認証成功
+Dashboard --> Login : セッション切れ\n（7日後）
+
+Dashboard --> Groups : ヘッダーリンク\n「グループ管理」
+Groups --> Dashboard : ヘッダーリンク\n「TubeMixer」
+
+Groups --> GroupEdit : 編集ボタン
+GroupEdit --> Groups : 戻るボタン\n/ 保存
+
+' === 注釈 ===
+note right of Login
+  **認証ガード（middleware.ts）**
+  ・未認証 → /login にリダイレクト
+  ・認証済みで /login → / にリダイレクト
+  ・API（未認証） → 401レスポンス
+end note
+
+note left of Dashboard
+  **データ再取得**
+  ・モバイル: プルトゥリフレッシュ
+  ・PC: リフレッシュボタン
+end note
+
+note right of UrlGen
+  50本超の場合は
+  警告メッセージ表示
+  （URL長制限）
+end note
+
+@enduml

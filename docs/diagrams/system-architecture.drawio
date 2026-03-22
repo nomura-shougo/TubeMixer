@@ -1,0 +1,132 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="29.6.1">
+  <diagram id="system-architecture" name="システム全体構成">
+    <mxGraphModel dx="1300" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="960" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="TubeMixer システム全体構成図" style="text;html=1;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;fontFamily=Yu Gothic;" vertex="1" parent="1">
+          <mxGeometry x="400" y="15" width="500" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- クライアント層 -->
+        <mxCell id="client-group" value="クライアント層" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=15;fontStyle=1;verticalAlign=top;spacingTop=8;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="120" y="70" width="960" height="170" as="geometry" />
+        </mxCell>
+
+        <mxCell id="iphone-icon" value="" style="shape=mxgraph.ios7.icons.smartphone;whiteSpace=wrap;html=1;fillColor=#4A6FA5;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="195" y="110" width="28" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="iphone" value="&lt;b&gt;iPhone Safari&lt;/b&gt;&lt;br&gt;（メインデバイス）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="230" y="110" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pc-icon" value="" style="shape=mxgraph.ios7.icons.monitor;whiteSpace=wrap;html=1;fillColor=#4A6FA5;strokeColor=none;" vertex="1" parent="1">
+          <mxGeometry x="420" y="115" width="35" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="pc" value="&lt;b&gt;PC ブラウザ&lt;/b&gt;&lt;br&gt;（サブデバイス）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="460" y="110" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="pwa" value="&lt;b&gt;PWA対応&lt;/b&gt;&lt;br&gt;manifest.json / スタンドアロンモード" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="230" y="175" width="260" height="40" as="geometry" />
+        </mxCell>
+
+        <mxCell id="client-components" value="&lt;b&gt;React クライアントコンポーネント&lt;/b&gt;&lt;br&gt;状態管理 / 並列フェッチ制御 / UIレンダリング" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="650" y="110" width="390" height="55" as="geometry" />
+        </mxCell>
+
+        <!-- Vercel / Next.js 層 -->
+        <mxCell id="vercel-group" value="Vercel（ホスティング）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=15;fontStyle=1;verticalAlign=top;spacingTop=8;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="120" y="290" width="960" height="240" as="geometry" />
+        </mxCell>
+
+        <mxCell id="nextjs-label" value="&lt;b&gt;Next.js（App Router）&lt;/b&gt;" style="text;html=1;fontSize=14;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="170" y="320" width="250" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- ページ -->
+        <mxCell id="pages-group" value="ページ（Server Components）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="170" y="355" width="410" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="page-login" value="/login&lt;br&gt;ログイン" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="185" y="385" width="100" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="page-dashboard" value="/&lt;br&gt;ダッシュボード" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="300" y="385" width="120" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="page-groups" value="/groups/*&lt;br&gt;グループ管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="435" y="385" width="120" height="38" as="geometry" />
+        </mxCell>
+
+        <!-- API Routes -->
+        <mxCell id="api-group" value="API Routes（Route Handlers）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;fontStyle=1;verticalAlign=top;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="620" y="355" width="420" height="80" as="geometry" />
+        </mxCell>
+
+        <mxCell id="api-auth" value="/api/auth/*&lt;br&gt;認証（NextAuth.js）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="635" y="383" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="api-youtube" value="/api/youtube/*&lt;br&gt;動画・チャンネル取得" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="770" y="383" width="125" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="api-groups" value="/api/groups&lt;br&gt;グループ管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="910" y="383" width="110" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- ミドルウェア -->
+        <mxCell id="middleware" value="&lt;b&gt;middleware.ts&lt;/b&gt;　認証ガード / リダイレクト制御" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="170" y="460" width="410" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="lib" value="&lt;b&gt;lib/&lt;/b&gt;　youtube.ts | kv.ts | auth.ts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="620" y="460" width="420" height="40" as="geometry" />
+        </mxCell>
+
+        <!-- 外部サービス層 -->
+        <mxCell id="ext-label" value="外部サービス" style="text;html=1;fontSize=15;fontStyle=1;align=left;verticalAlign=middle;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="560" width="150" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="google-oauth" value="&lt;b&gt;Google OAuth 2.0&lt;/b&gt;&lt;br&gt;認証・認可&lt;br&gt;youtube.readonly スコープ" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="120" y="595" width="270" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="youtube-api" value="&lt;b&gt;YouTube Data API v3&lt;/b&gt;&lt;br&gt;subscriptions.list&lt;br&gt;channels.list&lt;br&gt;playlistItems.list" style="shape=cloud;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="440" y="595" width="280" height="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="vercel-kv" value="&lt;b&gt;Vercel KV&lt;/b&gt;&lt;br&gt;Redis互換&lt;br&gt;user:{googleId}:groups" style="shape=cylinder3;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontSize=11;size=10;" vertex="1" parent="1">
+          <mxGeometry x="810" y="595" width="200" height="100" as="geometry" />
+        </mxCell>
+
+        <!-- 矢印 -->
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#6c8ebf;" edge="1" parent="1" source="client-components" target="api-group">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1-label" value="HTTP/HTTPS&lt;br&gt;fetch（3〜5件並列）" style="edgeLabel;html=1;fontSize=10;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" connectable="0" parent="arrow1">
+          <mxGeometry x="0.3" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="api-auth" target="google-oauth">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="api-youtube" target="youtube-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=1;strokeWidth=2;strokeColor=#82b366;" edge="1" parent="1" source="api-groups" target="vercel-kv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- 注釈 -->
+        <mxCell id="quota-note" value="APIクォータ: 10,000ユニット/日&lt;br&gt;1回のフィルタ操作: 約33ユニット" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="440" y="710" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="serverless-note" value="サーバーレス関数: 10秒タイムアウト&lt;br&gt;対策: 1チャンネルずつリクエスト" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;size=15;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="620" y="515" width="280" height="40" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
